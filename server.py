@@ -25,6 +25,13 @@ class PageNotFound(handler):
 def dict_to_list(dict):
     return [dict[key] for key in dict.keys()]
 
+def checkIfInt(str):
+    try:
+        int(str)
+        return int(str)
+    except ValueError:
+        return str
+
 def render_gallery_page(self, dict_images):
     cat_text = connection.select_distinct("category")
     id_text = connection.select_distinct("id")
@@ -81,7 +88,8 @@ class PhotosFilterHandler(handler):
             if args[0] in valid_arg_0:
                 #here we just have one call type 'query', but more could be added here
                 if args[0] == valid_arg_0[0]:
-                    results = connection.select_where(args[1], args[2])
+                    val = checkIfInt(args[2])
+                    results = connection.select_where(args[1], val)
                     if len(results) > 0:
                         render_gallery_page(self, results)
                     else:
