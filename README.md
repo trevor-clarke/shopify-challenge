@@ -6,7 +6,7 @@ Make sure to have python3 installed, as well as tornado web server (pip install 
 Clone this repo, and run ```sudo python server.py```
 In your browser navigate to ```127.0.0.1:80```
 ### Or, 
-you can simply check out my demo:
+you can just check out my demo instead:
 [SketchThis.ca/photos](http://sketchthis.ca/photos)
 
 ## Technical Analysis
