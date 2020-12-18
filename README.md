@@ -7,7 +7,7 @@ Since I already owned several personal domains, it only made sense to make a sys
 
 ## How to run it!
 Since the server is programmed with SSL, you will be unable to run it locally. Instead, I have included a link to one of my servers where it is being hosted.
-[SketchThis.ca/photos](https://sketchthis.ca/photos)
+[SketchThis.ca/photos](http://sketchthis.ca/photos)
 
 ## Technical Analysis
 
