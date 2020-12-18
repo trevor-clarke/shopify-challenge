@@ -8,21 +8,32 @@
 <body>
   <div class="uk-text-center uk-margin-medium-top">
     <h2 class="uk-heading-medium">Shopify Image Repo Challenge</h2>
-    <div>
-      View by category:
-      {% for category in categories%}
+    <div class="uk-flex uk-flex-wrap uk-flex-around">
+      <div>
+        See this project on <a href="https://https://github.com/trevor-clarke/shopify-challenge">github</a>
+      </div>
+      <div>
+        View by category:
+        {% for category in categories%}
         <a href="{{ escape(category[1]) }}"> {{ escape(category[0])+"," }} </a>
-      {% end %}
+        {% end %}
         <a href="/photos">all images</a>
+      </div>
+      <div>
+        Try click on an image to see it on it's own page.
+      </div>
     </div>
   </div>
-
-  <div class="uk-flex uk-flex-wrap uk-flex-around">
-    {% for image in images %}
-    <div class="uk-margin">
-      <img src="{{ "/images/" + escape(image[3]) }}"  width="200px!important" height="200px!important" uk-img>
+  <div class="uk-container uk-margin-large-top">
+    <div class="uk-flex uk-flex-wrap uk-flex-around">
+      <div></div>
+      {% for image in images %}
+      <div>
+        <img src="{{ "/images/" + escape(image[3]) }}"  width="300px!important" height="300px!important" uk-img>
+      </div>
+      {% end %}
     </div>
-    {% end %}
+
   </div>
 
 
