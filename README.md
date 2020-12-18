@@ -1,14 +1,12 @@
 # shopify-challenge
 Shopify Developer Intern Challenge Question
 
-## Initial Notes:
-It is amusing that this was the challenge outlined; I did this project for my personal photography website a couple of years ago.
-
 ## How to run it!
 Make sure to have python3 installed, as well as tornado web server (pip install tornado).
 Clone this repo, and run ```sudo python server.py``
 In your browser navigate to ```127.0.0.1:80```
-Or, you can simply check out my demo:
+### Or, 
+you can simply check out my demo:
 [SketchThis.ca/photos](http://sketchthis.ca/photos)
 
 ## Technical Analysis
