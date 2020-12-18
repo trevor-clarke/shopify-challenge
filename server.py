@@ -27,20 +27,52 @@ def dict_to_list(dict):
 
 def render_gallery_page(self, dict_images):
     cat_text = connection.select_distinct("category")
+    id_text = connection.select_distinct("id")
+
     categories = [[x, "/photos/query/category/" +x] for x in cat_text]
+    ids = [[str(x), "/photos/query/id/" + str(x)] for x in id_text]
     #Tornado template doesn't support dicts in their html markup, convert to list:
     images = [dict_to_list(img) for img in dict_images]
     self.render("display_images.html",
                 title="Trevor's Image Repo",
                 categories=categories,
+                ids=ids,
                 images = images)
+
+def image_not_found(self):
+    self.write("<script>alert('No results found.');window.location.replace('/')</script>")
+
+
+def render_single_photo_page(self, dict_image):
+    #Tornado template doesn't support dicts in their html markup, convert to list:
+    image = dict_to_list(dict_image)
+    print("here", image)
+    self.render("display_image.html",
+                title="Trevor's Image Repo",
+                image = image)
+
+
+class SinglePhotoHandler(handler):
+    def get(self, url_args):
+        args = url_args.split("/")
+        if len(args) == 1:
+            results = connection.select_where("id", int(args[0]))
+            if len(results) > 0:
+                render_single_photo_page(self, results[0])
+            else:
+                image_not_found(self)
+            return
+        image_not_found(self)
+
+
+
+
 
 class PhotosHandler(handler):
     def get(self):
         render_gallery_page(self, connection.select_all())
 
-
-class PhotosFeatureHandler(handler):
+class PhotosFilterHandler(handler):
     def get(self, url_args):
         #validate the given args make sure they follow required format
         args = url_args.split("/")
@@ -53,17 +85,18 @@ class PhotosFeatureHandler(handler):
                     if len(results) > 0:
                         render_gallery_page(self, results)
                     else:
-                        #some js, for a quick redirect
-                        self.write("<script>alert('No results found.');window.location.replace('/')</script>")
+                        image_not_found(self)
                     return
         self.redirect("/")
 
 if __name__ == "__main__":
     app = web.Application([
             (r"/", MainHandler),
+            (r"/photo/(.*)", SinglePhotoHandler),
             (r"/photos", PhotosHandler),
-            (r"/photos/(.*)", PhotosFeatureHandler),
+            (r"/photos/(.*)", PhotosFilterHandler),
             (r"/images/(.*)", web.StaticFileHandler, {"path": "public/images/"}),
+
         ], default_handler_class=PageNotFound, debug=True)
 
     #If you want to add an SSL Cert to the Server....

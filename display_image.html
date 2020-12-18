@@ -1,0 +1,36 @@
+<html>
+<head>
+  <title>{{ title }}</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.1/dist/css/uikit.min.css" />
+</head>
+<body>
+  <div class="uk-text-center uk-margin-medium-top">
+    <h2 class="uk-heading-medium">Shopify Image Repo Challenge</h2>
+    <div class="uk-flex uk-flex-wrap uk-flex-around uk-margin-top">
+      <div>
+        See this project on <a href="https://https://github.com/trevor-clarke/shopify-challenge">github</a>.
+      </div>
+      <div>
+        Go back to
+        <a href="/photos">all photos</a>.
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="uk-container uk-margin-large-top" uk-img>
+
+    <div class="uk-text-middle">
+      <span class="uk-text-lead uk-margin-right">{{ escape(image[1]) }}</span>
+      <span>{{ escape(image[2]) }}</span>
+      <span>{{ "Category: " + escape(image[4].capitalize())}}</span>
+    </div>
+    <div class="uk-height-large uk-background-cover uk-light" data-src="{{ "/images/" + escape(image[3]) }}" uk-img></div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.1/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.1/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
