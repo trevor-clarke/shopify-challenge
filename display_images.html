@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>{{ title }}</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.1/dist/css/uikit.min.css" />
+</head>
+<body>
+  <div class="uk-text-center uk-margin-medium-top">
+    <h2 class="uk-heading-medium">Shopify Image Repo Challenge</h2>
+    <div>
+      View by category:
+      {% for category in categories%}
+        <a href="{{ escape(category[1]) }}"> {{ escape(category[0])+"," }} </a>
+      {% end %}
+        <a href="/photos">all images</a>
+    </div>
+  </div>
+
+  <div class="uk-flex uk-flex-wrap uk-flex-around">
+    {% for image in images %}
+    <div class="uk-margin">
+      <img src="{{ "/images/" + escape(image[3]) }}"  width="200px!important" height="200px!important" uk-img>
+    </div>
+    {% end %}
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.1/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.1/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
