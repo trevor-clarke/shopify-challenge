@@ -21,7 +21,6 @@ class PageNotFound(handler):
     def prepare(self):
         self.write("The requested resource is not available. 404")
 
-
 def dict_to_list(dict):
     return [dict[key] for key in dict.keys()]
 
@@ -49,7 +48,6 @@ def render_gallery_page(self, dict_images):
 def image_not_found(self):
     self.write("<script>alert('No results found.');window.location.replace('/')</script>")
 
-
 def render_single_photo_page(self, dict_image):
     #Tornado template doesn't support dicts in their html markup, convert to list:
     image = dict_to_list(dict_image)
@@ -57,7 +55,6 @@ def render_single_photo_page(self, dict_image):
     self.render("display_image.html",
                 title="Trevor's Image Repo",
                 image = image)
-
 
 class SinglePhotoHandler(handler):
     def get(self, url_args):
@@ -70,10 +67,6 @@ class SinglePhotoHandler(handler):
                 image_not_found(self)
             return
         image_not_found(self)
-
-
-
-
 
 class PhotosHandler(handler):
     def get(self):
@@ -121,7 +114,6 @@ if __name__ == "__main__":
     # AND COMMENT THIS PART
     server = tornado.httpserver.HTTPServer(app)
     server.listen(80)
-
 
     print("Server has started.")
     tornado.ioloop.IOLoop.instance().start()

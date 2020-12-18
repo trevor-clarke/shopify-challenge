@@ -1,7 +1,6 @@
 # On an typical application, this would instead be a database, in fact
 # given more time, this could be a simple SQLite3 database even
 class Database:
-
     def __init__(self):
         self.fields = ["id", "name", "desc", "url", "category"]
         print("Database connection established.")
